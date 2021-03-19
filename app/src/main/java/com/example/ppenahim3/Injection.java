@@ -3,6 +3,7 @@ package com.example.ppenahim3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.RestrictionsManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -13,6 +14,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 public class Injection extends AppCompatActivity {
     private TextView surnamePatient;
@@ -41,6 +43,7 @@ public class Injection extends AppCompatActivity {
                 int selectedId = vaccin.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 String radioText = radioButton.getText().toString();
+
                 if(radioText.equals("Pfizer")){
                     try {
                         Fonctions fonc = new Fonctions();
@@ -50,6 +53,16 @@ public class Injection extends AppCompatActivity {
                         String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '2021-03-14 14:00:00', '1')";
 
                         st.executeUpdate(SQL);
+
+                        String Rem = "SELECT dose FROM vaccin WHERE nom = 'Pfizer'";
+                        ResultSet rs = st.executeQuery(Rem);
+                        rs.next();
+                        int quantite = rs.getInt(1)-1;
+                        System.out.println(rs.getInt(1));
+
+                        String Add = "UPDATE `vaccin` SET `dose` = "+quantite+" WHERE `vaccin`.`id` = 1;";
+                        st.executeUpdate(Add);
+
                         redirect();
                     }catch (Exception e){
                         e.printStackTrace();
@@ -64,6 +77,14 @@ public class Injection extends AppCompatActivity {
                         String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"','2021-03-14 14:00:00', '2')";
 
                         st.executeUpdate(SQL);
+
+                        String Rem = "SELECT `dose` FROM `vaccin` WHERE `nom` = 'Astra Zeneca'";
+                        ResultSet rs = st.executeQuery(Rem);
+                        rs.next();
+                        int quantite = rs.getInt(1) - 1;
+                        String Add = "UPDATE `vaccin` SET `dose` = "+quantite+" WHERE `vaccin`.`id` = 2;";
+                        st.executeUpdate(Add);
+
                         redirect();
                     }catch (Exception e){
                         e.printStackTrace();
@@ -78,6 +99,14 @@ public class Injection extends AppCompatActivity {
                         String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '2021-03-14 14:00:00', '3')";
 
                         st.executeUpdate(SQL);
+
+                        String Rem = "SELECT `dose` FROM `vaccin` WHERE `nom` = 'Moderna'";
+                        ResultSet rs = st.executeQuery(Rem);
+                        rs.next();
+                        int quantite = rs.getInt(1) - 1;
+                        String Add = "UPDATE `vaccin` SET `dose` = "+quantite+" WHERE `vaccin`.`id` = 3;";
+                        st.executeUpdate(Add);
+
                         redirect();
                     }catch (Exception e){
                         e.printStackTrace();
