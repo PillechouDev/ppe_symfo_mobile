@@ -52,6 +52,7 @@ public class Injection extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, medecins);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         medecin.setAdapter(adapter);
+
         //try {
           //  Fonctions fonc = new Fonctions();
             //Statement st = fonc.connexionSQLBDD();
