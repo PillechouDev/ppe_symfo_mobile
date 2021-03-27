@@ -6,33 +6,67 @@ import android.content.Intent;
 import android.content.RestrictionsManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class Injection extends AppCompatActivity {
     private TextView surnamePatient;
     private TextView namePatient;
-    private TextView date;
+    private DatePicker date;
     private RadioGroup vaccin;
     private TextView programmInjection;
     private RadioButton radioButton;
+    private Spinner medecin;
+    private Object AdapterView;
+    String[] medecins = {"Axel", "Romain", "Yohan"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.injection);
+
         this.surnamePatient = (TextView) findViewById(R.id.surnamePatient);
         this.namePatient = (TextView) findViewById(R.id.namePatient);
-        this.date = (TextView) findViewById(R.id.date);
+        this.date = (DatePicker) findViewById(R.id.date);
         this.vaccin = (RadioGroup) findViewById(R.id.vaccin);
         this.programmInjection = (TextView) findViewById(R.id.programmInjection);
+        this.medecin = (Spinner) findViewById(R.id.medecin);
+
+
+        medecin.setOnItemSelectedListener((android.widget.AdapterView.OnItemSelectedListener) this);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, medecins);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        medecin.setAdapter(adapter);
+        //try {
+          //  Fonctions fonc = new Fonctions();
+            //Statement st = fonc.connexionSQLBDD();
+
+            //String SQL = "SELECT medecin from medecin";
+
+            //final ResultSet rs = st.executeQuery(SQL);
+            //rs.next();
+            //medecins.add(rs.getString(1));
+
+
+        //}catch (Exception e){
+          //  e.printStackTrace();
+        //}
+
 
 
         programmInjection.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +77,6 @@ public class Injection extends AppCompatActivity {
                 int selectedId = vaccin.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 String radioText = radioButton.getText().toString();
-
                 if(radioText.equals("Pfizer")){
                     try {
                         Fonctions fonc = new Fonctions();
@@ -118,9 +151,16 @@ public class Injection extends AppCompatActivity {
             }
         });
     }
+
+    public void onItemSelected(ArrayAdapter<?> arg0, View arg1, int position, long id){
+        Toast.makeText(getApplicationContext(), medecins[position], Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0){
+
+    }
     private void redirect(){
         Intent otherActivity = new Intent(getApplicationContext(), Homepage.class);
         startActivity(otherActivity);
         finish();
-    };
+    }
 }
