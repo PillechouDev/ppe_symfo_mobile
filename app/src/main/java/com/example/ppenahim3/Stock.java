@@ -12,7 +12,12 @@ import java.sql.Statement;
 
 public class Stock extends AppCompatActivity {
     private TextView stockPfizer;
-    private TextView stockAstra;
+    private TextView namePfizer;
+    private TextView nameModerna;
+    private TextView nameAstra8;
+    private TextView nameAstra10;
+    private TextView stockAstra8;
+    private TextView stockAstra10;
     private TextView stockModerna;
     private TextView exit;
 
@@ -21,7 +26,12 @@ public class Stock extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock);
         this.stockPfizer = (TextView) findViewById(R.id.stockPfizer);
-        this.stockAstra = (TextView) findViewById(R.id.stockAstra);
+        this.namePfizer = (TextView) findViewById(R.id.namePfizer);
+        this.nameModerna = (TextView) findViewById(R.id.nameModerna);
+        this.nameAstra8 = (TextView) findViewById(R.id.nameAstra8);
+        this.nameAstra10 = (TextView) findViewById(R.id.nameAstra10);
+        this.stockAstra8 = (TextView) findViewById(R.id.stockAstra8);
+        this.stockAstra10 = (TextView) findViewById(R.id.stockAstra10);
         this.stockModerna = (TextView) findViewById(R.id.stockModerna);
         this.exit = (TextView) findViewById(R.id.exit);
 
@@ -29,11 +39,74 @@ public class Stock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT dose from vaccin WHERE nom = 'Pfizer'";
-
+            String SQL = "SELECT nom from flacon_details WHERE id = 3";
             final ResultSet rs = st.executeQuery(SQL);
             rs.next();
-            stockPfizer.setText(rs.getString(1));
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 3";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
+            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            nameAstra8.setText(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try {
+            Fonctions fonc = new Fonctions();
+            Statement st = fonc.connexionSQLBDD();
+
+            String SQL = "SELECT nom from flacon_details WHERE id = 4";
+            final ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 4";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
+            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            nameModerna.setText(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try {
+            Fonctions fonc = new Fonctions();
+            Statement st = fonc.connexionSQLBDD();
+
+            String SQL = "SELECT nom from flacon_details WHERE id = 1";
+            final ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 1";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
+            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            namePfizer.setText(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try {
+            Fonctions fonc = new Fonctions();
+            Statement st = fonc.connexionSQLBDD();
+
+            String SQL = "SELECT nom from flacon_details WHERE id = 2";
+            final ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 2";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
+            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            nameAstra10.setText(result);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try {
+            Fonctions fonc = new Fonctions();
+            Statement st = fonc.connexionSQLBDD();
+
+            String SQL = "SELECT flacon from vaccin WHERE id = 1";
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 1";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
+            final ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            stockPfizer.setText(rs.getInt(1)*rs2.getInt(1));
 
 
         }catch (Exception e){
@@ -44,11 +117,29 @@ public class Stock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT dose from vaccin WHERE nom = 'Astra Zeneca'";
-
+            String SQL = "SELECT flacon from vaccin WHERE id = 2";
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 2";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
             final ResultSet rs = st.executeQuery(SQL);
             rs.next();
-            stockAstra.setText(rs.getString(1));
+            stockAstra8.setText(rs.getInt(1)*rs2.getInt(1));
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try {
+            Fonctions fonc = new Fonctions();
+            Statement st = fonc.connexionSQLBDD();
+
+            String SQL = "SELECT flacon from vaccin WHERE id = 3";
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 3";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
+            final ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            stockAstra10.setText(rs.getInt(1)*rs2.getInt(1));
 
 
         }catch (Exception e){
@@ -59,11 +150,13 @@ public class Stock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT dose from vaccin WHERE nom = 'Moderna'";
-
+            String SQL = "SELECT flacon from vaccin WHERE id = 4";
+            String SQL2 = "SELECT doses from flacon_details WHERE id = 4";
+            final ResultSet rs2= st.executeQuery(SQL2);
+            rs2.next();
             final ResultSet rs = st.executeQuery(SQL);
             rs.next();
-            stockModerna.setText(rs.getString(1));
+            stockModerna.setText(rs.getInt(1)*rs2.getInt(1));
 
 
         }catch (Exception e){

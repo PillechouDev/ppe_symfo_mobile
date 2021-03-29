@@ -22,11 +22,35 @@
 
         </FrameLayout>
 
+        <Button
+            android:id="@+id/ajouter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ajouter flacon " />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="18.7dp"
+            android:layout_marginRight="62dp"
+            android:background="@drawable/blue_fill__rounded_color"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="Retour"
+            android:textColor="@android:color/white"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/namePfizer"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +80,7 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/nameAstra8"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,11 +91,40 @@
             android:gravity="center"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:text="Stock d'Astra Zeneca'"
+            android:text="Stock d'Astra Zeneca (8 doses)'"
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
         <TextView
-            android:id="@+id/stockAstra"
+            android:id="@+id/stockAstra8"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="62dp"
+            android:background="@color/colorSecondary"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/nameAstra10"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="62dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="Stock d'Astra Zeneca (10 doses)'"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/stockAstra10"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -85,6 +139,7 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/nameModerna"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,21 +167,6 @@
             android:paddingBottom="14dp"
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/exit"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="62dp"
-            android:layout_marginTop="18.7dp"
-            android:layout_marginRight="62dp"
-            android:background="@drawable/blue_fill__rounded_color"
-            android:gravity="center"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:text="Retour"
-            android:textColor="@android:color/white"
-            android:textSize="25sp"/>
 
 
     </LinearLayout>

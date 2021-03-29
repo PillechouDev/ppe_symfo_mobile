@@ -118,10 +118,15 @@
                     android:layout_height="wrap_content"
                     android:text="Pfizer"/>
                 <RadioButton
-                    android:id="@+id/astra"
+                    android:id="@+id/astra8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Astra Zeneca"/>
+                    android:text="Astra Zeneca 8 doses"/>
+                <RadioButton
+                    android:id="@+id/astra10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Astra Zeneca 10 doses"/>
                 <RadioButton
                     android:id="@+id/moderna"
                     android:layout_width="match_parent"
