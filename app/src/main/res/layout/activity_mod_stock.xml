@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Injection">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/modMain">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/blue_bg">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/logo"/>
+
+        </FrameLayout>
+
+        <RadioGroup
+            android:id="@+id/vaccinname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/vaccin"
+            android:background="@android:color/transparent"
+            android:hint="Date injection"
+            android:inputType="datetime"
+            android:maxLines="1"
+            android:paddingLeft="50dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="16sp">
+            <RadioButton
+                android:id="@+id/pfizer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pfizer"/>
+            <RadioButton
+                android:id="@+id/astra8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Astra Zeneca 8 doses"/>
+            <RadioButton
+                android:id="@+id/astra10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Astra Zeneca 10 doses"/>
+            <RadioButton
+                android:id="@+id/moderna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Moderna"/>
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="36.7dp"
+            android:layout_marginRight="62dp"
+            android:background="@drawable/blue_border_rounded_cornwe">
+
+            <NumberPicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pickerNum"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="12.7dp"
+            android:layout_marginRight="62dp"
+            android:background="@drawable/blue_border_rounded_cornwe"/>
+
+
+        <TextView
+            android:id="@+id/modButton"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="18.7dp"
+            android:layout_marginRight="62dp"
+            android:background="@drawable/blue_fill__rounded_color"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:text="Modifier Stock"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"/>
+    </LinearLayout>
+
+</ScrollView>

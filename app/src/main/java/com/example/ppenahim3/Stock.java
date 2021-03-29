@@ -20,6 +20,7 @@ public class Stock extends AppCompatActivity {
     private TextView stockAstra10;
     private TextView stockModerna;
     private TextView exit;
+    private TextView modStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class Stock extends AppCompatActivity {
         this.stockAstra10 = (TextView) findViewById(R.id.stockAstra10);
         this.stockModerna = (TextView) findViewById(R.id.stockModerna);
         this.exit = (TextView) findViewById(R.id.exit);
+        this.modStock = (TextView) findViewById(R.id.ajouter);
 
         try {
             Fonctions fonc = new Fonctions();
@@ -146,6 +148,15 @@ public class Stock extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        modStock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), ModStock.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
