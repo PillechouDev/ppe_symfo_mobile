@@ -1,9 +1,11 @@
 package com.example.ppenahim3;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.RestrictionsManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.sql.Date;
@@ -30,6 +33,7 @@ public class Injection extends AppCompatActivity {
     private DatePicker date;
     private RadioGroup vaccin;
     private TextView programmInjection;
+    private TimePicker heure;
     private RadioButton radioButton;
     private Spinner medecin;
     private Object AdapterView;
@@ -45,6 +49,7 @@ public class Injection extends AppCompatActivity {
         this.date = (DatePicker) findViewById(R.id.date);
         this.vaccin = (RadioGroup) findViewById(R.id.vaccin);
         this.programmInjection = (TextView) findViewById(R.id.programmInjection);
+        this.heure = (TimePicker) findViewById(R.id.heureInj);
 
 
         //try {
@@ -65,6 +70,7 @@ public class Injection extends AppCompatActivity {
 
 
         programmInjection.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
                 final String surname = surnamePatient.getText().toString();
@@ -73,7 +79,9 @@ public class Injection extends AppCompatActivity {
                 final int year = date.getYear();
                 final int month = date.getMonth();
                 final int day = date.getDayOfMonth();
-                System.out.println(year);
+                final int heureInj = heure.getHour();
+                final int minuteInj = heure.getMinute();
+                System.out.println(heureInj);
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 String radioText = radioButton.getText().toString();
                 if(radioText.equals("Pfizer")){
@@ -81,23 +89,36 @@ public class Injection extends AppCompatActivity {
                         Fonctions fonc = new Fonctions();
                         Statement st = fonc.connexionSQLBDD();
 
-                        String dateInj = year+"-0"+month+"-"+day+" 14:00:00";
-                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+                        String dateInj = year+"-0"+month+"-"+day;
+                        System.out.println(heureInj);
+                        System.out.println(minuteInj);
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                         java.util.Date dateStr = formatter.parse(dateInj);
                         java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
-                        System.out.println(dateInj);
-                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+"', '1')";
+                        System.out.println(dateDB);
+                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`, `IdMedecin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+" "+heureInj+":"+minuteInj+":00.0', '1' , '1')";
 
                         st.executeUpdate(SQL);
 
-                        String Rem = "SELECT dose FROM vaccin WHERE nom = 'Pfizer'";
+                        String Rem = "SELECT doses FROM flacon_use WHERE id = 1";
                         ResultSet rs = st.executeQuery(Rem);
                         rs.next();
-                        int quantite = rs.getInt(1)-1;
+                        if (rs.getInt(1)==0){
+                            System.out.println("dans le fi");
+                            String SQL2 = "UPDATE vaccin SET `flacon` = flacon -1  WHERE id = 1";
+                            st.executeUpdate(SQL2);
+                            String SQL4 = "SELECT doses FROM flacon_details WHERE id = 1";
+                            ResultSet rs4 = st.executeQuery(SQL4);
+                            rs4.next();
+                            String SQL3 = "UPDATE `flacon_use` SET `doses` = "+rs4.getInt(1)+" WHERE `flacon_use`.`id` = 1 ;";
+                            st.executeUpdate(SQL3);
+
+                        }
                         System.out.println(rs.getInt(1));
 
-                        String Add = "UPDATE `vaccin` SET `dose` = "+quantite+" WHERE `vaccin`.`id` = 1;";
+                        String Add = "UPDATE `flacon_use` SET `doses` = doses -1 WHERE `flacon_use`.`id` = 1 ;";
                         st.executeUpdate(Add);
+
 
                         redirect();
                     }catch (Exception e){
