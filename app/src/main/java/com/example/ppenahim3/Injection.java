@@ -19,6 +19,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -44,14 +45,7 @@ public class Injection extends AppCompatActivity {
         this.date = (DatePicker) findViewById(R.id.date);
         this.vaccin = (RadioGroup) findViewById(R.id.vaccin);
         this.programmInjection = (TextView) findViewById(R.id.programmInjection);
-        this.medecin = (Spinner) findViewById(R.id.medecin);
 
-
-        medecin.setOnItemSelectedListener((android.widget.AdapterView.OnItemSelectedListener) this);
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, medecins);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        medecin.setAdapter(adapter);
 
         //try {
           //  Fonctions fonc = new Fonctions();
@@ -76,6 +70,10 @@ public class Injection extends AppCompatActivity {
                 final String surname = surnamePatient.getText().toString();
                 final String name = namePatient.getText().toString();
                 int selectedId = vaccin.getCheckedRadioButtonId();
+                final int year = date.getYear();
+                final int month = date.getMonth();
+                final int day = date.getDayOfMonth();
+                System.out.println(year);
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 String radioText = radioButton.getText().toString();
                 if(radioText.equals("Pfizer")){
@@ -83,8 +81,12 @@ public class Injection extends AppCompatActivity {
                         Fonctions fonc = new Fonctions();
                         Statement st = fonc.connexionSQLBDD();
 
-
-                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '2021-03-14 14:00:00', '1')";
+                        String dateInj = year+"-0"+month+"-"+day+" 14:00:00";
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+                        java.util.Date dateStr = formatter.parse(dateInj);
+                        java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+                        System.out.println(dateInj);
+                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+"', '1')";
 
                         st.executeUpdate(SQL);
 
@@ -106,10 +108,12 @@ public class Injection extends AppCompatActivity {
                     try {
                         Fonctions fonc = new Fonctions();
                         Statement st = fonc.connexionSQLBDD();
-
-
-                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"','2021-03-14 14:00:00', '2')";
-
+                        String dateInj = year+"-0"+month+"-"+day+" 14:00:00";
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+                        java.util.Date dateStr = formatter.parse(dateInj);
+                        java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+                        System.out.println(dateInj);
+                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+"', '2')";
                         st.executeUpdate(SQL);
 
                         String Rem = "SELECT `dose` FROM `vaccin` WHERE `nom` = 'Astra Zeneca'";
@@ -129,9 +133,12 @@ public class Injection extends AppCompatActivity {
                         Fonctions fonc = new Fonctions();
                         Statement st = fonc.connexionSQLBDD();
 
-
-                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '2021-03-14 14:00:00', '3')";
-
+                        String dateInj = year+"-0"+month+"-"+day+" 14:00:00";
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+                        java.util.Date dateStr = formatter.parse(dateInj);
+                        java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+                        System.out.println(dateInj);
+                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+"', '3')";
                         st.executeUpdate(SQL);
 
                         String Rem = "SELECT `dose` FROM `vaccin` WHERE `nom` = 'Moderna'";
