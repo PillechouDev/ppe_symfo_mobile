@@ -104,7 +104,31 @@ public class Injection extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                if(radioText.equals("Astra Zeneca")){
+                if(radioText.equals("Astra Zeneca 8 doses")){
+                    try {
+                        Fonctions fonc = new Fonctions();
+                        Statement st = fonc.connexionSQLBDD();
+                        String dateInj = year+"-0"+month+"-"+day+" 14:00:00";
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+                        java.util.Date dateStr = formatter.parse(dateInj);
+                        java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+                        System.out.println(dateInj);
+                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+"', '3')";
+                        st.executeUpdate(SQL);
+
+                        String Rem = "SELECT `dose` FROM `vaccin` WHERE `nom` = 'Astra Zeneca'";
+                        ResultSet rs = st.executeQuery(Rem);
+                        rs.next();
+                        int quantite = rs.getInt(1) - 1;
+                        String Add = "UPDATE `vaccin` SET `dose` = "+quantite+" WHERE `vaccin`.`id` = 2;";
+                        st.executeUpdate(Add);
+
+                        redirect();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                if(radioText.equals("Astra Zeneca 10 doses")){
                     try {
                         Fonctions fonc = new Fonctions();
                         Statement st = fonc.connexionSQLBDD();
@@ -138,7 +162,7 @@ public class Injection extends AppCompatActivity {
                         java.util.Date dateStr = formatter.parse(dateInj);
                         java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
                         System.out.println(dateInj);
-                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+"', '3')";
+                        String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+"', '4')";
                         st.executeUpdate(SQL);
 
                         String Rem = "SELECT `dose` FROM `vaccin` WHERE `nom` = 'Moderna'";

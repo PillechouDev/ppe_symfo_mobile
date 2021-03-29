@@ -39,13 +39,11 @@ public class Stock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT nom from flacon_details WHERE id = 3";
-            final ResultSet rs = st.executeQuery(SQL);
-            rs.next();
+
             String SQL2 = "SELECT doses from flacon_details WHERE id = 3";
-            final ResultSet rs2= st.executeQuery(SQL2);
+            ResultSet rs2= st.executeQuery(SQL2);
             rs2.next();
-            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            String result = "Astra Zeneca - "+rs2.getString(1)+" doses";
             nameAstra8.setText(result);
         }catch (Exception e){
             e.printStackTrace();
@@ -54,13 +52,11 @@ public class Stock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT nom from flacon_details WHERE id = 4";
-            final ResultSet rs = st.executeQuery(SQL);
-            rs.next();
+
             String SQL2 = "SELECT doses from flacon_details WHERE id = 4";
-            final ResultSet rs2= st.executeQuery(SQL2);
+             ResultSet rs2= st.executeQuery(SQL2);
             rs2.next();
-            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            String result ="Moderna - "+rs2.getString(1)+" doses";
             nameModerna.setText(result);
         }catch (Exception e){
             e.printStackTrace();
@@ -69,13 +65,10 @@ public class Stock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT nom from flacon_details WHERE id = 1";
-            final ResultSet rs = st.executeQuery(SQL);
-            rs.next();
             String SQL2 = "SELECT doses from flacon_details WHERE id = 1";
-            final ResultSet rs2= st.executeQuery(SQL2);
+             ResultSet rs2= st.executeQuery(SQL2);
             rs2.next();
-            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            String result = "Pfizer - "+rs2.getString(1)+" doses";
             namePfizer.setText(result);
         }catch (Exception e){
             e.printStackTrace();
@@ -84,13 +77,11 @@ public class Stock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT nom from flacon_details WHERE id = 2";
-            final ResultSet rs = st.executeQuery(SQL);
-            rs.next();
+
             String SQL2 = "SELECT doses from flacon_details WHERE id = 2";
-            final ResultSet rs2= st.executeQuery(SQL2);
+             ResultSet rs2= st.executeQuery(SQL2);
             rs2.next();
-            String result = rs.getString(1)+"- "+rs2.getString(1)+" doses";
+            String result = "Astra Zeneca - "+rs2.getString(1)+" doses";
             nameAstra10.setText(result);
 
         }catch (Exception e){
@@ -101,12 +92,11 @@ public class Stock extends AppCompatActivity {
             Statement st = fonc.connexionSQLBDD();
 
             String SQL = "SELECT flacon from vaccin WHERE id = 1";
-            String SQL2 = "SELECT doses from flacon_details WHERE id = 1";
-            final ResultSet rs2= st.executeQuery(SQL2);
-            rs2.next();
-            final ResultSet rs = st.executeQuery(SQL);
+            ResultSet rs = st.executeQuery(SQL);
+
             rs.next();
-            stockPfizer.setText(rs.getInt(1)*rs2.getInt(1));
+            int result = rs.getInt(1);
+            stockPfizer.setText("Flacons: "+result);
 
 
         }catch (Exception e){
@@ -118,12 +108,10 @@ public class Stock extends AppCompatActivity {
             Statement st = fonc.connexionSQLBDD();
 
             String SQL = "SELECT flacon from vaccin WHERE id = 2";
-            String SQL2 = "SELECT doses from flacon_details WHERE id = 2";
-            final ResultSet rs2= st.executeQuery(SQL2);
-            rs2.next();
-            final ResultSet rs = st.executeQuery(SQL);
+
+             ResultSet rs = st.executeQuery(SQL);
             rs.next();
-            stockAstra8.setText(rs.getInt(1)*rs2.getInt(1));
+            stockAstra8.setText("Flacons : " + rs.getInt(1));
 
 
         }catch (Exception e){
@@ -134,12 +122,10 @@ public class Stock extends AppCompatActivity {
             Statement st = fonc.connexionSQLBDD();
 
             String SQL = "SELECT flacon from vaccin WHERE id = 3";
-            String SQL2 = "SELECT doses from flacon_details WHERE id = 3";
-            final ResultSet rs2= st.executeQuery(SQL2);
-            rs2.next();
-            final ResultSet rs = st.executeQuery(SQL);
+
+             ResultSet rs = st.executeQuery(SQL);
             rs.next();
-            stockAstra10.setText(rs.getInt(1)*rs2.getInt(1));
+            stockAstra10.setText("Flacons : " +rs.getInt(1));
 
 
         }catch (Exception e){
@@ -151,12 +137,10 @@ public class Stock extends AppCompatActivity {
             Statement st = fonc.connexionSQLBDD();
 
             String SQL = "SELECT flacon from vaccin WHERE id = 4";
-            String SQL2 = "SELECT doses from flacon_details WHERE id = 4";
-            final ResultSet rs2= st.executeQuery(SQL2);
-            rs2.next();
-            final ResultSet rs = st.executeQuery(SQL);
+
+             ResultSet rs = st.executeQuery(SQL);
             rs.next();
-            stockModerna.setText(rs.getInt(1)*rs2.getInt(1));
+            stockModerna.setText("Flacons : "+rs.getInt(1));
 
 
         }catch (Exception e){

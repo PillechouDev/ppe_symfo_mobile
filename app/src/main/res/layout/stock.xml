@@ -91,7 +91,6 @@
             android:gravity="center"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:text="Stock d'Astra Zeneca (8 doses)'"
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
         <TextView
@@ -120,7 +119,6 @@
             android:gravity="center"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:text="Stock d'Astra Zeneca (10 doses)'"
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
         <TextView
