@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Array;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +33,7 @@ public class Injection extends AppCompatActivity {
     private RadioButton radioButton;
     private Spinner medecin;
     private Object AdapterView;
+    //private Array medecins;
     String[] medecins = {"Axel", "Romain", "Yohan"};
 
     @Override
@@ -45,8 +47,20 @@ public class Injection extends AppCompatActivity {
         this.vaccin = (RadioGroup) findViewById(R.id.vaccin);
         this.programmInjection = (TextView) findViewById(R.id.programmInjection);
         this.medecin = (Spinner) findViewById(R.id.medecin);
+        /*
+        try {
+            Fonctions fonc = new Fonctions();
+            Statement st = fonc.connexionSQLBDD();
 
-
+            String SQL = "SELECT nom from medicin";
+            final ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            this.medecins= rs.getArray(1);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+         */
         medecin.setOnItemSelectedListener((android.widget.AdapterView.OnItemSelectedListener) this);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, medecins);
@@ -124,6 +138,7 @@ public class Injection extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                if (radioText.)
                 if(radioText.equals("Moderna")){
                     try {
                         Fonctions fonc = new Fonctions();
