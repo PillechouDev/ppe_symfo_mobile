@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,59 +18,62 @@ import java.sql.Statement;
 public class ModStock extends AppCompatActivity {
 
 
-    private NumberPicker numberPicker;
+    private EditText numberPicker;
     private RadioGroup radioButton;
     private TextView modButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        this.numberPicker = (NumberPicker) findViewById(R.id.pickerNum);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mod_stock);
+
+        this.numberPicker = (EditText) findViewById(R.id.pickerNum);
         this.radioButton = (RadioGroup) findViewById(R.id.vaccinname);
         this.modButton = (TextView) findViewById(R.id.modButton);
-
-
-        radioButton.setOnClickListener(new View.OnClickListener() {
+        radioButton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                System.out.println("frfireief");
                 int selectedId = radioButton.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 String radioText = radioButton.getText().toString();
-                if(radioText.equals("Pfizer")){
-                    numberPicker.setValue(getNumberofFlacon(1));
+                if (radioText.equals("Pfizer")) {
+
+                    numberPicker.setText(getNumberofFlacon(1));
                 }
-                if(radioText.equals("Astra Zeneca 8 doses")){
-                    numberPicker.setValue(getNumberofFlacon(3));
+                if (radioText.equals("Astra Zeneca 8 doses")) {
+                    numberPicker.setText(getNumberofFlacon(3));
                 }
-                if(radioText.equals("Astra Zeneca 10 doses")){
-                    numberPicker.setValue(getNumberofFlacon(2));
+                if (radioText.equals("Astra Zeneca 10 doses")) {
+                    numberPicker.setText(getNumberofFlacon(2));
                 }
-                if(radioText.equals("Moderna")){
-                    numberPicker.setValue(getNumberofFlacon(4));
-                }
-                else{
-                    redirect();
+                if (radioText.equals("Moderna")) {
+                    numberPicker.setText(getNumberofFlacon(4));
                 }
             }
         });
+
         modButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int selectedId = radioButton.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 String radioText = radioButton.getText().toString();
-                int number = numberPicker.getValue();
+                String number = numberPicker.getText().toString();
+                int num = Integer.parseInt(number);
                 if(radioText.equals("Pfizer")){
-                   setNumberofFlacon(1,number);
+                    setNumberofFlacon(1,num);
                 }
                 if(radioText.equals("Astra Zeneca 8 doses")){
-                    setNumberofFlacon(3,number);
+                    setNumberofFlacon(3,num);
                 }
                 if(radioText.equals("Astra Zeneca 10 doses")){
-                    setNumberofFlacon(2,number);
+                    setNumberofFlacon(2,num);
                 }
                 if(radioText.equals("Moderna")){
-                    setNumberofFlacon(4,number);
+                    setNumberofFlacon(4,num);
                 }
                 else{
                     redirect();
@@ -78,9 +82,6 @@ public class ModStock extends AppCompatActivity {
             }
         });
 
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mod_stock);
 
     }
     private void setNumberofFlacon(int id,int number) {
@@ -88,7 +89,7 @@ public class ModStock extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL3 = "UPDATE `vaccin` SET `falcon` = "+number+" WHERE `vaccin`.`id` = "+id+";";
+            String SQL3 = "UPDATE `vaccin` SET `flacon` = "+number+" WHERE `vaccin`.`id` = "+id+";";
             st.executeUpdate(SQL3);
 
         }
@@ -97,7 +98,7 @@ public class ModStock extends AppCompatActivity {
         }
 
     }
-    private int getNumberofFlacon(int id) {
+    private String getNumberofFlacon(int id) {
         try {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
@@ -106,13 +107,13 @@ public class ModStock extends AppCompatActivity {
 
             ResultSet rs = st.executeQuery(SQL);
             rs.next();
-            return rs.getInt(1);
+            return rs.getString(1);
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        return 0;
+        return null;
 
     }
     private void redirect(){
@@ -121,3 +122,4 @@ public class ModStock extends AppCompatActivity {
         finish();
     }
 }
+

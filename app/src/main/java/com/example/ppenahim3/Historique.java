@@ -22,12 +22,14 @@ public class Historique extends AppCompatActivity {
     private TextView bottomCard;
     private TextView topCard;
     private LinearLayout mainLayout;
+    private TextView exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.historique);
         this.mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
+        this.exit = (TextView) findViewById(R.id.exit);
 
 
         try {
@@ -79,6 +81,15 @@ public class Historique extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), Homepage.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
 
 
     }

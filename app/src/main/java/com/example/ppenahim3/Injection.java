@@ -134,7 +134,7 @@ public class Injection extends AppCompatActivity {
             java.util.Date dateStr = formatter.parse(dateInj);
             java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
             System.out.println(dateDB);
-            String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`, `NomMedecin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+" "+heureInj+":"+minuteInj+":00.0', "+idvaccin+" , "+nommedecin+")";
+            String SQL = "INSERT INTO `injection` (`IdInjection`, `prenomPatient`, `nomPatient`, `dateInjection`, `IdVaccin`, `NomMedecin`) VALUES (NULL, '"+surname+"', '"+name+"', '"+dateDB+" "+heureInj+":"+minuteInj+":00.0', "+idvaccin+" , '"+nommedecin+"')";
 
             st.executeUpdate(SQL);
 
