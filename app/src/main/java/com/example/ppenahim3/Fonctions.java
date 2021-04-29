@@ -5,11 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Fonctions {
 
-    public static String url = "jdbc:mysql://10.0.2.2:3308/ppe-nahim";
-    public static String user = "root";
-    public static String pass = "";
+public class Fonctions {
+    /*
+    public static String url = "jdbc:mysql://pillechou.ddns.net:3306/phpmyadmin/ppesyfmfo_mobile";
+    public static String user = "romainroot";
+    public static String pass = "qAMBkzeXJcaZLRNJ";*/
+    public static String url = "jdbc:mysql://pillechou.ddns.net:3306/ppesyfmfo_mobile?autoReconnect=true&useSSL=false";
+    public static String user = "romainroot";
+    public static String pass = "qAMBkzeXJcaZLRNJ";
 
     public static Statement connexionSQLBDD() {
         try{

@@ -2,6 +2,7 @@ package com.example.ppenahim3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,13 +13,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView loginButton;
     private static EditText user, pass;
+    private static  AccesDistant accesDistant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
         user = (EditText) findViewById(R.id.user);
         pass = (EditText) findViewById(R.id.pass);
 
-        if (Build.VERSION.SDK_INT >9){
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new
+                    StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
 
@@ -43,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void connexion(){
+
         try {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
@@ -58,9 +68,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         }catch (Exception e){
-            NextActivity();
+
         }
+        /*
+
+        accesDistant = new AccesDistant();
+        List laListe = new ArrayList();
+        laListe.add(user);
+        */
+
     }
+
 
     private void NextActivity(){
         Intent otherActivity = new Intent(getApplicationContext(), Homepage.class);
