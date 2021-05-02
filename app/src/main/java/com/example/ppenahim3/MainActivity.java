@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
 
-            String SQL = "SELECT password from user WHERE username = '"+user.getText().toString()+"'";
+            String SQL = "SELECT password from user2 WHERE username = '"+user.getText().toString()+"'";
 
             final ResultSet rs = st.executeQuery(SQL);
             rs.next();

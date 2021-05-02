@@ -24,7 +24,25 @@
 
         </FrameLayout>
 
-
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/exit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="62dp"
+                android:layout_marginTop="18.7dp"
+                android:layout_marginRight="62dp"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="Retour"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,6 +90,7 @@
                 android:textSize="16sp"/>
 
         </RelativeLayout>
+        <!--
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,7 +114,14 @@
                 android:textSize="16sp" />
 
         </RelativeLayout>
-
+-->
+        <Spinner
+            android:id="@+id/spinnerMedecin"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="12.7dp"
+            android:layout_marginRight="62dp" />
 
 
         <RelativeLayout
@@ -112,8 +138,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:datePickerMode="calendar"
-                />
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"/>
+
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -126,7 +153,7 @@
                 android:id="@+id/heureInj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:timePickerMode="clock"/>
+                android:timePickerMode="spinner"/>
         </RelativeLayout>
 
         <RelativeLayout

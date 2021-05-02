@@ -11,7 +11,7 @@ public class Fonctions {
     public static String url = "jdbc:mysql://pillechou.ddns.net:3306/phpmyadmin/ppesyfmfo_mobile";
     public static String user = "romainroot";
     public static String pass = "qAMBkzeXJcaZLRNJ";*/
-    public static String url = "jdbc:mysql://pillechou.ddns.net:3306/ppesyfmfo_mobile?autoReconnect=true&useSSL=false";
+    public static String url = "jdbc:mysql://pillechou.ddns.net:3306/ppe-symfo?autoReconnect=true&useSSL=false";
     public static String user = "romainroot";
     public static String pass = "qAMBkzeXJcaZLRNJ";
 

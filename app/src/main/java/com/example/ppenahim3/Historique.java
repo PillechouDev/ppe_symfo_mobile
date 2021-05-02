@@ -70,6 +70,9 @@ public class Historique extends AppCompatActivity {
                     bottom.setText("Vaccin : Astra Zeneca"+" "+"Date d'injection: "+rs.getString(4));
                 }
                 if (rs.getString(5).equals("3")){
+                    bottom.setText("Vaccin : Astra Zeneca"+" "+"Date d'injection: "+rs.getString(4));
+                }
+                if (rs.getString(5).equals("4")){
                     bottom.setText("Vaccin : Moderna"+" "+"Date d'injection: "+rs.getString(4));
                 }
 

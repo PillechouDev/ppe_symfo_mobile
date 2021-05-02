@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.RestrictionsManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,6 +41,7 @@ public class Injection extends AppCompatActivity {
     private RadioButton radioButton;
     private Spinner medecin;
     private Object AdapterView;
+    private TextView exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,15 @@ public class Injection extends AppCompatActivity {
 
         this.surnamePatient = (TextView) findViewById(R.id.surnamePatient);
         this.namePatient = (TextView) findViewById(R.id.namePatient);
-        this.nameMedecin = (TextView) findViewById(R.id.nameMedecin);
         this.date = (DatePicker) findViewById(R.id.date);
         this.vaccin = (RadioGroup) findViewById(R.id.vaccin);
         this.programmInjection = (TextView) findViewById(R.id.programmInjection);
         this.heure = (TimePicker) findViewById(R.id.heureInj);
+        this.medecin = (Spinner) findViewById(R.id.spinnerMedecin);
+        this.exit = (TextView) findViewById(R.id.exit);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Injection.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.medecinNames));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        medecin.setAdapter(myAdapter);
 
 
         //try {
@@ -70,7 +76,14 @@ public class Injection extends AppCompatActivity {
           //  e.printStackTrace();
         //}
 
-
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent otherActivity = new Intent(getApplicationContext(), Homepage.class);
+                startActivity(otherActivity);
+                finish();
+            }
+        });
 
         programmInjection.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -78,7 +91,7 @@ public class Injection extends AppCompatActivity {
             public void onClick(View v) {
                 final String surname = surnamePatient.getText().toString();
                 final String name = namePatient.getText().toString();
-                final String namemed = nameMedecin.getText().toString();
+                String namemed = medecin.getSelectedItem().toString();
                 int selectedId = vaccin.getCheckedRadioButtonId();
                 final int year = date.getYear();
                 final int month = date.getMonth();
@@ -113,6 +126,7 @@ public class Injection extends AppCompatActivity {
     }
 
      */
+
     public void onNothingSelected(AdapterView<?> arg0){
 
     }
@@ -126,7 +140,7 @@ public class Injection extends AppCompatActivity {
         try {
             Fonctions fonc = new Fonctions();
             Statement st = fonc.connexionSQLBDD();
-
+            Log.d("IDVACCIN", "**********************************************"+idvaccin);
             String dateInj = year+"-0"+month+"-"+day;
             System.out.println(heureInj);
             System.out.println(minuteInj);

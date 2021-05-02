@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PPE Nahim 3</string>
+
+    <string-array name="medecinNames">
+        <item>Danglot </item>
+        <item>Widogue </item>
+        <item>Legrand </item>
+        <item>Pani </item>
+    </string-array>
 </resources>
